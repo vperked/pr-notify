@@ -1,7 +1,14 @@
+if not prNotifyCFG then
+    print("[ERROR] Could not load prNotifyCFG!")
+else
+    print("[DEBUG] prNotifyCFG Loaded Successfully.")
+end
+
+
 RegisterServerEvent('onPlayerDeath')
 AddEventHandler('onPlayerDeath', function (data)
   function checkConfig()
-        if Config.Message == "" then
+        if prNotifyCFG.Message == "" then
             print("Nil value!")
             return false
         end
@@ -11,32 +18,48 @@ AddEventHandler('onPlayerDeath', function (data)
     data.victim = source
     if data.killedByPlayer then
         lib.notify({
-            title = Config.Message .. "".. GetPlayerName(data.victim) , 
+            title = prNotifyCFG.Message .. "".. GetPlayerName(data.victim) , 
             type = 'success',
-            position = 'top',
+            position =  prNotifyCFG.Display,
             icon = 'fa-heart-o',
             iconAnimation = 'pulse',
         })
-        print("[DEBUG] Notification Sent.")
+        if prNotifyCFG.Debug == true then
+        print(debugMessages[3])
+        end
     else
-    local cOD = GetPedCauseOfDeath(data.victim)
+
         lib.notify({
-            title = Config.Message .." "..  cOD , 
+            title = "test",
             type = 'success',
-            position = 'top',
+            position =  prNotifyCFG.Display,
             icon = 'fa-heart-o',
             iconAnimation = 'pulse',
         })
-        print("[DEBUG] Notification Sent.")
-    end
+        if prNotifyCFG.Debug == true then
+        print(debugMessages[2])
+        end
+    end 
 end)
-
+if not prNotifyCFG then
+    print("Couldnt get CFG!")
+end
 RegisterCommand("notify", function (source, args, raw)
     lib.notify({
         title = 'Player Killed',
         description = 'Notification description',
         type = 'success',
-        position = 'top'
+        position =  prNotifyCFG.Display,
     })
-    print("[DEBUG] Notification Sent.")
+    if prNotifyCFG.Debug == true then
+        print(debugMessages[1])
+        end
 end)
+
+function debugMode()
+    if prNotifyCFG.Debug == true then
+    print("[Pr-Notify] Debug Enabled.")   
+    debugMessages = {"[DEBUG] Test notify Sent.",  "[DEBUG] Killed by random sent.", "[DEBUG] Killed by player Sent."}
+    end
+end
+debugMode()
