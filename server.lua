@@ -5,8 +5,8 @@ else
 end
 
 
-RegisterServerEvent('onPlayerDeath')
-AddEventHandler('onPlayerDeath', function (data)
+RegisterServerEvent('esx:onPlayerDeath')
+AddEventHandler('esx:onPlayerDeath', function (data)
   function checkConfig()
         if prNotifyCFG.Message == "" then
             print("Nil value!")
@@ -17,7 +17,7 @@ AddEventHandler('onPlayerDeath', function (data)
     if not checkConfig() then return end
     data.victim = source
     if data.killedByPlayer then
-        lib.notify({
+        lib.notify(source{
             title = prNotifyCFG.Message .. "".. GetPlayerName(data.victim) , 
             type = 'success',
             position =  prNotifyCFG.Display,
@@ -45,7 +45,7 @@ if not prNotifyCFG then
     print("Couldnt get CFG!")
 end
 RegisterCommand("notify", function (source, args, raw)
-    lib.notify({
+    lib.notify(source{
         title = 'Player Killed',
         description = 'Notification description',
         type = 'success',
@@ -59,7 +59,13 @@ end)
 function debugMode()
     if prNotifyCFG.Debug == true then
     print("[Pr-Notify] Debug Enabled.")   
-    debugMessages = {"[DEBUG] Test notify Sent.",  "[DEBUG] Killed by random sent.", "[DEBUG] Killed by player Sent."}
+    debugMessages = {"[DEBUG] Test notify Sent.",  "[DEBUG] Killed by random sent.", "[DEBUG] Killed by player Sent.", "[DEBUG] Player Revived."}
     end
 end
 debugMode()
+RegisterServerEvent("deathscreen:revive")
+    AddEventHandler("deathscreen:revive", function ()
+        if prNotifyCFG.Debug == true then
+            print(debugMessages[4])
+        end
+    end)
