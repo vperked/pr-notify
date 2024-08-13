@@ -92,11 +92,6 @@ end
         },
         cancel = true,
     })
-    if prAlert == 'confirm' then
-        disablePr = true
-    else
-        disablePr = false
-    end
-    print(prAlert)
+print(prAlert)
 end)
 

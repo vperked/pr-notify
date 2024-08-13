@@ -13,10 +13,6 @@ client_scripts {
     
 }
 
-server_scripts {
-  'server.lua'
-}
-
 escrow_ignore {
     'config.lua'
   }
