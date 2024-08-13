@@ -21,7 +21,7 @@ end
 if not prNotifyCFG then
     print("Couldnt get CFG!")
 end
-
+-- Start of script
 print("^1 prNotify Started ^1")
 AddEventHandler(prNotifyCFG.PlayerDeathEvent, function (data)
     data.victim = source
@@ -53,6 +53,7 @@ AddEventHandler(prNotifyCFG.PlayerDeathEvent, function (data)
             })
     end
 end)
+--- End of script
 
 -- To test if notis are working.
 RegisterCommand("tnotify", function (source, args, raw)
