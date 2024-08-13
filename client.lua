@@ -27,32 +27,25 @@ if not prNotifyCFG then
     print("Couldnt get CFG!")
 end
 
+
 AddEventHandler(prNotifyCFG.PlayerDeathEvent, function (data)
+    if disablePr == true then
+        return nil
+    end
+    print("prNotify Started!")
     data.victim = source
     if data.killedByPlayer then
         lib.notify({
             title =  prNotifyCFG.ServerName,
-            description = 'Notification description',
+            description = data.victim .. "Has been killed by".. data.killerServerId ,
             type = 'success',
             position =  prNotifyCFG.Display,
+            icon = prNotifyCFG.Icon, 
         })
         if prNotifyCFG.Debug == true then
             print(debugMessages[3])
             end
     end
-       
-    if data.killerServerId == nil then 
-        playerSOD = GetPedCauseOfDeath(data.victim)
-        lib.notify({
-            title = prNotifyCFG.ServerName,
-            description = "Player died too",
-            type = 'success',
-            position =  prNotifyCFG.Display,
-        })
-        if prNotifyCFG.Debug == true then
-        print(debugMessages[2])
-        end
-    end 
 end)
 RegisterCommand("notify", function (source, args, raw)
 
@@ -66,4 +59,15 @@ AddEventHandler(prNotifyCFG.ServerReviveEvent, function ()
         print(debugMessages[4])
     end
 end)
+
+disablePr = RegisterCommand("disablepr", function (source, args, raw)
+    local prAlert = lib.alertDialog({
+        header = prNotifyCFG.ServerName,
+        content = "Are you sure you wanna turn the killfeed off?",
+        centered = true,
+        cancel = true,
+    })
+    print(prAlert)
+end)
+
 
