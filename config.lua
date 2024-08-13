@@ -7,3 +7,5 @@ prNotifyCFG.ServerName = "prLegacy" -- Server Name
 prNotifyCFG.ServerReviveEvent = "deathscreen:revive" -- Event to revive a player
 prNotifyCFG.PlayerDeathEvent =  "esx:onPlayerDeath" -- Event on player death
 prNotifyCFG.Icon = "fa-rocket" -- https://fontawesome.com/v4/icons/
+prNotifyCFG.Color = #000000 -- only hexs accepted.
+prNotifyCFG.ColorBackRound = #000000
