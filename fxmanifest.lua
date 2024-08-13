@@ -13,5 +13,12 @@ client_scripts {
     
 }
 
+server_scripts {
+  'server.lua'
+}
+
+escrow_ignore {
+    'config.lua'
+  }
 
 shared_script '@ox_lib/init.lua'
