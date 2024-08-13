@@ -10,4 +10,3 @@ prNotifyCFG.Icon = "fa-rocket" -- https://fontawesome.com/v4/icons/
 prNotifyCFG.IconColor = "#000000"
 prNotifyCFG.Color = "#D70000" -- only hexs accepted.
 prNotifyCFG.ColorBackRound = "#D70000"
-prNotifyCFG.Webhook = ""
