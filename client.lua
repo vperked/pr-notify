@@ -11,7 +11,6 @@ function debugMode()
     end
 end
 debugMode() -- Debug mode is called just to make sure.
--- checks if the player gets revied or not.
 
 function checkConfig()
     if prNotifyCFG.Message == "" then
@@ -19,7 +18,6 @@ function checkConfig()
         return false
     end
 end
-if not checkConfig() then return end
 if not prNotifyCFG then
     print("Couldnt get CFG!")
 end
@@ -74,12 +72,6 @@ RegisterCommand("tnotify", function (source, args, raw)
         print(debugMessages[1])
         end
 end)
--- Checking if player is revived
-if prNotifyCFG.Debug == true then
-AddEventHandler(prNotifyCFG.ServerReviveEvent, function ()
-        print(debugMessages[4])
-    end)
-end
 -- If the player wants, they can disable the notis.
  RegisterCommand("disablepr", function (source, args, raw)
     local prAlert = lib.alertDialog({
